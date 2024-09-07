@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>DealKade</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li id="userArea"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="welcome-section">
+            <!-- Default message for non-logged in users -->
+            <h2 id="welcome-message">Welcome to Cash Kade!</h2>
+            <p id="user-specific-message">Please <a href="login.html">log in</a> to explore personalized offers and exclusive deals.</p>
+        </section>
+
+        <section class="Best-selling-Products">
+            <h2>Best Selling Products</h2>
+            <div class="product-list">
+                <div class="product-item">
+                    <h3>Product 1</h3>
+                    <p>Description of Product 1</p>
+                    <button>Buy Now</button>
+                </div>
+                <div class="product-item">
+                    <h3>Product 2</h3>
+                    <p>Description of Product 2</p>
+                    <button>Buy Now</button>
+                </div>
+                <div class="product-item">
+                    <h3>Product 3</h3>
+                    <p>Description of Product 3</p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    /*<footer>
+        <p>&copy; 2024, All rights reserved by DealKade.</p>
+    </footer>*/
+
+    <script>
+        // Simulating user login state
+        var loggedIn = false; // Change to 'true' if user is logged in
+        var userName = "John Doe"; // Sample logged-in user name
+
+        // Customizing page based on login state
+        var welcomeMessage = document.getElementById("welcome-message");
+        var userMessage = document.getElementById("user-specific-message");
+        var userArea = document.getElementById("userArea");
+
+        if (loggedIn) {
+            welcomeMessage.innerText = "Welcome back, " + userName + "!";
+            userMessage.innerText = "Explore personalized offers curated just for you!";
+            userArea.innerHTML = '<a href="#">Logout</a>';
+        } else {
+            userArea.innerHTML = '<a href="login.html">Log in</a>';
+        }
+	
+	        window.onload = () => {
+            const products = document.querySelectorAll('.product-item');
+
+            // Apply a delay to each product to make them swipe up sequentially
+            products.forEach((product, index) => {
+                setTimeout(() => {
+                    product.classList.remove('hidden');
+                    product.classList.add('visible');
+                }, index * 300); // Stagger effect with 300ms delay
+            });
+        };
+    </script>
+    
+</body>
+</html>
