@@ -1,7 +1,8 @@
 <?php 
-include "../db_connect.php"
+include "../db_connect.php";
 
 // Get the submitted username and password
+if (isset($_POST['username']) && isset($_POST['password'])) {
 $user = $_POST['username'];
 $pass = $_POST['password'];
 
@@ -34,6 +35,7 @@ if ($user_result->num_rows > 0) {
 }
 
 $conn->close();
+}
 ?>
 
 
@@ -44,7 +46,7 @@ $conn->close();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login/Signup</title>
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 <div class="form-container">
