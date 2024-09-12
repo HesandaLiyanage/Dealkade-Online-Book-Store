@@ -3,6 +3,40 @@ include "../db_connect.php";
 
 $error = '';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
+  $username_or_email = $_POST['username_or_email'];
+  $password = $_POST['password'];
+  $name = $_POST['name'];
+  $address = $_POST['address'];
+  $phone_number = $_POST['phone_number'];
+
+  // Check if the username or email already exists
+  $check_sql = "SELECT * FROM users WHERE username_or_email='$username_or_email'";
+  $check_result = $conn->query($check_sql);
+
+  if ($check_result->num_rows > 0) {
+      // Username or email already exists
+      $error = "Username or email is already registered!";
+  } else {
+      // Hash the password
+      $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+      // Insert new user into the database
+      $register_sql = "INSERT INTO users (username_or_email, password, role, name, address, phone_number) 
+                       VALUES ('$username_or_email', '$hashed_password', 'customer', '$name', '$address', '$phone_number')";
+
+      if ($conn->query($register_sql) === TRUE) {
+          // Registration successful, redirect to login or homepage
+          $_SESSION['username_or_email'] = $username_or_email;
+          $_SESSION['role'] = 'customer';
+          header("Location: homepage.html");
+          exit();
+      } else {
+          $error = "Error in registration: " . $conn->error;
+      }
+  }
+}
+
 // Get the submitted username and password
 if (isset($_POST['username']) && isset($_POST['password'])) {
 $user = $_POST['username'];
@@ -30,7 +64,7 @@ if ($user_result->num_rows > 0) {
     $row = $user_result->fetch_assoc();
     $_SESSION['username_or_email'] = $row['username_or_email'];
     $_SESSION['role'] = 'user';
-    $sql = "UPDATE users SET role='$customer'";
+
     header("Location:homepage.html");
     exit();
 } else {
