@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
       $error = "Username or email is already registered!";
   } else {
       // Hash the password
-      $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+      $hashed_password = MD5($password);
 
       // Insert new user into the database
       $register_sql = "INSERT INTO users (username_or_email, password, role, name, address, phone_number) 
@@ -36,23 +36,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
       }
   }
 }
+//Get the submitted username and password
 
-// Get the submitted username and password
 if (isset($_POST['username']) && isset($_POST['password'])) {
 $user = $_POST['username'];
 $pass = $_POST['password'];
 
 // // Check if the user is an admin
-// $admin_sql = "SELECT * FROM admins WHERE username='$user' AND password=MD5('$pass')";
-// $admin_result = $conn->query($admin_sql);
-
-// if ($admin_result->num_rows > 0) {
-//     // Admin login successful
-//     $row = $admin_result->fetch_assoc();
-//     $_SESSION['username'] = $row['username'];
-//     $_SESSION['role'] = 'admin';
-//     header("Location: admin_dashboard.php");
-//     exit();
+//  $admin_sql = "SELECT * FROM admins WHERE username='$user' AND password=MD5('$pass')";
+//  $admin_result = $conn->query($admin_sql);
+//  if ($admin_result->num_rows > 0) {
+//      // Admin login successful
+//      $row = $admin_result->fetch_assoc();
+//      $_SESSION['username'] = $row['username'];
+//      $_SESSION['role'] = 'admin';
+//      header("Location: admin_dashboard.php");
+//      exit();
 // }
 
 // Check if the user is a regular user
@@ -62,10 +61,17 @@ $user_result = $conn->query($user_sql);
 if ($user_result->num_rows > 0) {
     // User login successful
     $row = $user_result->fetch_assoc();
-    $_SESSION['username_or_email'] = $row['username_or_email'];
-    $_SESSION['role'] = 'user';
-
-    header("Location:homepage.html");
+    // $_SESSION['username_or_email'] = $row['username_or_email'];
+    // $_SESSION['role'] = 'user';
+    $user_role_sql = "SELECT * FROM users WHERE username_or_email='$user' AND role='admin'";
+    $user_role_result = $conn->query($user_role_sql);
+    if ($user_role_result-> num_rows > 0 ) {
+      $_SESSION['role'] = 'admin';
+      header("Location:admin.html");
+    }else {
+      $_SESSION['role'] = 'user'; 
+      header("Location:homepage.html");
+      }
     exit();
 } else {
     $error = "Invalid username or password!";
@@ -75,8 +81,6 @@ $conn->close();
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +125,7 @@ $conn->close();
     <input type="text" id="name" name="name" placeholder="Name" required>
     <input type="text" id="address" name="address" placeholder="Address" required>
     <input type="text" id="tel" name="phone_number" placeholder="Telephone_Number" required>
-    <button type="submit">Sign Up</button>
+    <button type="submit" name="register">Sign Up</button>
   </form>
 </div>
 </body>
