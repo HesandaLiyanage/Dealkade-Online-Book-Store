@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Shop - Amazon Style</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Include the header -->
+    <div id="header-container"></div>
+
+    <div class="main-container">
+        <!-- Search and Filter Section -->
+        <div class="search-filter-container">
+            <input type="text" placeholder="Search books..." class="search-bar">
+            <div class="filters">
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All</option>
+                    <option value="novels">Novels</option>
+                    <option value="scifi">Sci-Fi</option>
+                    <option value="fiction">Fiction</option>
+                </select>
+
+                <label for="price-range">Price Range:</label>
+                <select id="price-range">
+                    <option value="all">All</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100-200">$100 - $200</option>
+                </select>
+
+                <button class="filter-button">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Product Carousel Section -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150x200" alt="Book 1">
+                    <h3>Book 1</h3>
+                    <p class="price">$49.99</p>
+                    <p class="rating">★★★★☆</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150x200" alt="Book 2">
+                    <h3>Book 2</h3>
+                    <p class="price">$79.99</p>
+                    <p class="rating">★★★★★</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150x200" alt="Book 3">
+                    <h3>Book 3</h3>
+                    <p class="price">$89.99</p>
+                    <p class="rating">★★★☆☆</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150x200" alt="Book 4">
+                    <h3>Book 4</h3>
+                    <p class="price">$59.99</p>
+                    <p class="rating">★★★★☆</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Book Shop. Powered by Hesanda.</p>
+    </footer>
+
+    <script>
+        // Loading the header dynamically
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => document.getElementById('header-container').innerHTML = data);
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const carousel = document.querySelector('.carousel');
+        const totalSlides = document.querySelectorAll('.product-card').length;
+        const slideWidth = document.querySelector('.product-card').clientWidth;
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+            carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+    </script>
+</body>
+</html>

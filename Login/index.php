@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
           // Registration successful, redirect to login or homepage
           $_SESSION['username_or_email'] = $username_or_email;
           $_SESSION['role'] = 'customer';
-          header("Location: homepage.html");
+          header("Location: ../customer/index.html");
           exit();
       } else {
           $error = "Error in registration: " . $conn->error;
@@ -70,7 +70,7 @@ if ($user_result->num_rows > 0) {
       header("Location:admin.html");
     }else {
       $_SESSION['role'] = 'user'; 
-      header("Location:homepage.html");
+      header("Location:../customer/index.html");
       }
     exit();
 } else {
