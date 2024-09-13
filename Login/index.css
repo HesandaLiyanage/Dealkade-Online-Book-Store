@@ -1,131 +1,72 @@
-/* General Styling */
-body {
-  font-family: Arial, sans-serif;
+/* CSS for Login and Signup Forms */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  box-sizing: border-box;
 }
 
-.main-container {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.search-filter-container {
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #232f3e;
-  color: white;
-}
-
-.search-bar {
-  width: 60%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.filters {
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  height: 100vh;
 }
 
-.filter-button {
-  padding: 10px 20px;
-  background-color: #ff9900;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-/* Carousel Styling */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin-top: 20px;
-}
-
-.carousel {
-  display: flex; /* Change to flex for horizontal alignment */
-  transition: transform 0.5s ease;
-}
-
-/* Product Card Styling */
-.product-card {
-  background-color: white;
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
   padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  flex: 0 0 auto; /* Prevent shrinking of cards */
-  width: 200px; /* Set fixed width for product cards */
-  border: 1px solid #e3e3e3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 300px;
 }
 
-.product-card img {
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form {
   width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
-.product-card h3 {
-  margin: 0;
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 16px;
-  font-weight: bold;
 }
 
-.product-card p.price {
-  color: #b12704;
-  font-weight: bold;
-  margin: 10px 0;
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #28a745;
+  outline: none;
 }
 
-.product-card p.rating {
-  color: #ffa41c;
-  font-size: 14px;
-}
-
-.product-card button {
-  padding: 10px 15px;
-  background-color: #ff9900;
-  color: white;
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-/* Carousel Controls */
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  font-size: 18px;
+button:hover {
+  background-color: #218838;
 }
 
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
-
-/* Footer Styling */
-footer {
-  background-color: #232f3e;
-  color: white;
-  padding: 10px;
-  text-align: center;
+.error {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
