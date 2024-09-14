@@ -15,13 +15,23 @@ try {
 }
 
 // Get search query, category, and price range from the form
-$search = isset($_GET['search']) ? $_GET['search'] : '';
+$search = isset($_GET['query']) ? trim($_GET['query']) : '';
 $category = isset($_GET['category']) ? $_GET['category'] : 'all';
 $priceRange = isset($_GET['price_range']) ? $_GET['price_range'] : 'all';
 
-// Construct SQL query
-$sql = "SELECT p. * FROM products p JOIN categories c ON p.category_id = c.id WHERE p.name LIKE :search";
-$params = [':search' => '%' . $search . '%'];
+// Base SQL query
+$sql = "SELECT p.*, pi.img_url FROM products p 
+        LEFT JOIN product_images pi ON p.id = pi.product_id
+        JOIN categories c ON p.category_id = c.id 
+        WHERE 1=1"; // 1=1 allows us to append more conditions dynamically
+
+$params = [];
+
+// Add search query filter
+if (!empty($search)) {
+    $sql .= " AND p.name LIKE :search";
+    $params[':search'] = '%' . $search . '%';
+}
 
 // Add category filter if not "all"
 if ($category !== 'all') {
@@ -32,11 +42,13 @@ if ($category !== 'all') {
 // Add price range filter if not "all"
 if ($priceRange !== 'all') {
     $priceBounds = explode('-', $priceRange);
-    $minPrice = (float)$priceBounds[0];
-    $maxPrice = (float)$priceBounds[1];
-    $sql .= " AND price BETWEEN :minPrice AND :maxPrice";
-    $params[':minPrice'] = $minPrice;
-    $params[':maxPrice'] = $maxPrice;
+    if (count($priceBounds) === 2) {
+        $minPrice = (float)$priceBounds[0];
+        $maxPrice = (float)$priceBounds[1];
+        $sql .= " AND p.price BETWEEN :minPrice AND :maxPrice";
+        $params[':minPrice'] = $minPrice;
+        $params[':maxPrice'] = $maxPrice;
+    }
 }
 
 $stmt = $conn->prepare($sql);
@@ -60,10 +72,12 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($books as $book): ?>
                     <div class="book-item">
                         <a href="book-details.php?id=<?= $book['id'] ?>">
-                            <img src="<?= $book['image_url'] ?>" alt="<?= $book['title'] ?>">
-                            <h3><?= $book['title'] ?></h3>
+                            <img src="<?= $book['img_url'] ?: 'default-image.png' ?>" alt="<?= htmlspecialchars($book['name']) ?>">
+                            <h3><?= htmlspecialchars($book['name']) ?></h3>
                             <p class="price">$<?= number_format($book['price'], 2) ?></p>
-                            <p class="rating"><?= str_repeat('★', $book['rating']) . str_repeat('☆', 5 - $book['rating']) ?></p>
+                            <p class="rating">
+                                <?= isset($book['rating']) ? str_repeat('★', $book['rating']) . str_repeat('☆', 5 - $book['rating']) : 'No rating available' ?>
+                            </p>
                         </a>
                     </div>
                 <?php endforeach; ?>
