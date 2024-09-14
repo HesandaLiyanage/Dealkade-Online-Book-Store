@@ -14,10 +14,10 @@
         <!-- Search and Filter Section -->
         <div class="search-filter-container">
             <form action="search.php" method="GET">
-                <input type="text" placeholder="Search books..." class="search-bar">
+                <input type="text" placeholder="Search books..." class="search-bar" name='query'>
                 <div class="filters">
                     <label for="category">Category:</label>
-                    <select id="category">
+                    <select id="category" name='category'>
                         <option value="all">All</option>
                         <option value="novels">Novels</option>
                         <option value="scifi">Sci-Fi</option>
@@ -25,14 +25,14 @@
                     </select>
 
                     <label for="price-range">Price Range:</label>
-                    <select id="price-range">
+                    <select id="price-range" name='price_range'>
                         <option value="all">All</option>
                         <option value="0-50">$0 - $50</option>
                         <option value="50-100">$50 - $100</option>
                         <option value="100-200">$100 - $200</option>
                     </select>
 
-                    <button class="filter-button">Apply Filters</button>
+                    <input type="submit" class="filter-button" value="Apply filters"/>
                 </div>
             </form>
         </div>
