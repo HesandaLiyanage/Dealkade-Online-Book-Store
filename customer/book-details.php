@@ -7,17 +7,18 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dealkade";
+// // Connect to the database
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "dealkade";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+include "../db_connect.php";
 
 // Get the product (book) ID from the URL
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -190,7 +191,7 @@ main {
 
     <!-- Your existing header -->
     <header>
-        <div class="header-content">
+        <!-- <div class="header-content">
             <h1>My Bookshop</h1>
             <nav>
                 <ul>
@@ -199,7 +200,10 @@ main {
                     <li><a href="#">Cart</a></li>
                 </ul>
             </nav>
-        </div>
+        </div> -->
+        <?php
+        include "header.html"
+        ?>
     </header>
 
     <!-- Fullscreen Product Page Content -->
@@ -231,7 +235,7 @@ main {
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit" class="btn buy-now">Buy Now</button>
                     </form>
-                    <button class="btn wishlist">Add to Wishlist</button>
+                    <!-- <button class="btn wishlist">Add to Wishlist</button> -->
                 </div>
             </div>
 

@@ -20,7 +20,11 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <!-- Include the header -->
-    <div id="header-container"></div>
+    <div id="header-container">
+    <?php
+        include "header.html"
+        ?>
+    </div>
 
     <div class="main-container">
         <!-- Search and Filter Section -->
