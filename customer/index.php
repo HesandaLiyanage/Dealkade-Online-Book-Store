@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Login/index.php"); // Redirect to login if not logged in
+    exit();
+}
+
+// User or admin-specific content goes here
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +20,11 @@
 </head>
 <body>
     <!-- Include the header -->
-    <div id="header-container"></div>
+    <div id="header-container">
+    <?php
+        include "header.html"
+        ?>
+    </div>
 
     <div class="main-container">
         <!-- Search and Filter Section -->
@@ -41,7 +57,7 @@
         <div class="carousel-container">
             <div class="carousel">
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=1">
                     <img src="https://via.placeholder.com/150x200" alt="Book 1">
                     <h3>Book 1</h3>
                     <p class="price">$49.99</p>
@@ -59,7 +75,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=3">
                     <img src="https://via.placeholder.com/150x200" alt="Book 3">
                     <h3>Book 3</h3>
                     <p class="price">$89.99</p>
@@ -68,7 +84,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=4">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 4</h3>
                     <p class="price">$59.99</p>
@@ -77,7 +93,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=5">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 5</h3>
                     <p class="price">$69.69</p>
@@ -86,7 +102,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=6">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 6</h3>
                     <p class="price">$129.99</p>
@@ -95,7 +111,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=7">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 7</h3>
                     <p class="price">$29.99</p>
@@ -104,7 +120,7 @@
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=8">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 8</h3>
                     <p class="price">$229.99</p>

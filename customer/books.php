@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Login/index.php"); // Redirect to login if not logged in
+    exit();
+}
+
+// User or admin-specific content goes here
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,7 +192,11 @@ footer p {
 </head>
 <body>
     <!-- Include the header -->
-    <div id="header-container"></div>
+    <div id="header-container">
+    <?php
+        include "header.html"
+        ?>
+    </div>
 
     <div class="main-container">
         <!-- Search and Filter Section -->
