@@ -17,13 +17,14 @@ if ($conn->connect_error) {
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 // Initialize variables
-$title = $author = $price = $description = $image_url = $category = "Not available.";
+$product_name = $author = $price = $description = $image_url = $category_name = "Not available.";
 $stock = 0;
 $reviews = [];
 
 if ($product_id > 0) {
     // Fetch product details, category, and image
-    $sql = "SELECT products.*, book_categories.category_name, book_images.image_url
+    $sql = "SELECT products.name AS product_name, products.author, products.price, products.stock, 
+                   products.description, book_categories.name AS category_name, book_images.image_url
             FROM products
             LEFT JOIN book_categories ON products.category_id = book_categories.id
             LEFT JOIN book_images ON products.id = book_images.book_id
@@ -34,13 +35,13 @@ if ($product_id > 0) {
     if ($result->num_rows > 0) {
         // Fetch product details and store them in variables
         $product = $result->fetch_assoc();
-        $title = $product['title'];
+        $product_name = $product['product_name']; // Aliased column for product name
         $author = $product['author'];
         $price = "$" . number_format($product['price'], 2);  // Format price
         $stock = $product['stock'];
         $description = $product['description'];
         $image_url = $product['image_url'];
-        $category = $product['category_name'];
+        $category_name = $product['category_name']; // Aliased column for category name
     }
 
     // Fetch reviews for the product
@@ -63,7 +64,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($title); ?></title>
+    <title><?php echo htmlspecialchars($product_name); ?></title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your previous project's CSS -->
 </head>
 <body>
@@ -71,14 +72,14 @@ $conn->close();
     <div class="product-details-container">
         <!-- Product Image -->
         <div class="product-image">
-            <img src="<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($title); ?>" />
+            <img src="<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($product_name); ?>" />
         </div>
 
         <!-- Product Information -->
         <div class="product-info">
-            <h1><?php echo htmlspecialchars($title); ?></h1>
+            <h1><?php echo htmlspecialchars($product_name); ?></h1>
             <p><strong>Author:</strong> <?php echo htmlspecialchars($author); ?></p>
-            <p><strong>Category:</strong> <?php echo htmlspecialchars($category); ?></p>
+            <p><strong>Category:</strong> <?php echo htmlspecialchars($category_name); ?></p>
             <p><strong>Price:</strong> <?php echo htmlspecialchars($price); ?></p>
             <p><strong>Stock Available:</strong> <?php echo htmlspecialchars($stock); ?></p>
             <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($description)); ?></p>
