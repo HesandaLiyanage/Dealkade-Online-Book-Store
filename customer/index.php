@@ -53,7 +53,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="carousel-container">
             <div class="carousel">
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=1">
                     <img src="https://via.placeholder.com/150x200" alt="Book 1">
                     <h3>Book 1</h3>
                     <p class="price">$49.99</p>
@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=3">
                     <img src="https://via.placeholder.com/150x200" alt="Book 3">
                     <h3>Book 3</h3>
                     <p class="price">$89.99</p>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=4">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 4</h3>
                     <p class="price">$59.99</p>
@@ -89,7 +89,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=5">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 5</h3>
                     <p class="price">$69.69</p>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=6">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 6</h3>
                     <p class="price">$129.99</p>
@@ -107,7 +107,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=7">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 7</h3>
                     <p class="price">$29.99</p>
@@ -116,7 +116,7 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <a href="book-details.php?id=2">
+                    <a href="book-details.php?id=8">
                     <img src="https://via.placeholder.com/150x200" alt="Book 4">
                     <h3>Book 8</h3>
                     <p class="price">$229.99</p>
