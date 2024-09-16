@@ -7,7 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// User or admin-specific content goes here
+$products = [
+    ['id' => 1, 'name' => 'Book 1', 'price' => 49.99, 'image' => 'https://via.placeholder.com/150x200'],
+    ['id' => 2, 'name' => 'Book 2', 'price' => 79.99, 'image' => 'https://via.placeholder.com/150x200'],
+    // Add other products as needed
+];
 
 ?>
 
@@ -227,75 +231,22 @@ footer p {
 
         <!-- Product List Section -->
         <div class="products-container">
-            <!-- Repeating Book Cards -->
+            <?php foreach ($products as $product): ?>
             <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 1">
-                <h3>Book 1</h3>
-                <p class="price">$49.99</p>
+                <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
+                <h3><?php echo $product['name']; ?></h3>
+                <p class="price">$<?php echo number_format($product['price'], 2); ?></p>
                 <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
+                <form action="add_to_cart.php" method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                    <button type="submit" class="buy-button">Add to Cart</button>
+                </form>
             </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 2">
-                <h3>Book 2</h3>
-                <p class="price">$79.99</p>
-                <p class="rating">★★★★★</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 3">
-                <h3>Book 3</h3>
-                <p class="price">$89.99</p>
-                <p class="rating">★★★☆☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 4">
-                <h3>Book 4</h3>
-                <p class="price">$59.99</p>
-                <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <!-- Additional books -->
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 5">
-                <h3>Book 5</h3>
-                <p class="price">$69.69</p>
-                <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 6">
-                <h3>Book 6</h3>
-                <p class="price">$129.99</p>
-                <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 7">
-                <h3>Book 7</h3>
-                <p class="price">$29.99</p>
-                <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <img src="https://via.placeholder.com/150x200" alt="Book 8">
-                <h3>Book 8</h3>
-                <p class="price">$229.99</p>
-                <p class="rating">★★★★☆</p>
-                <button class="buy-button">Add to Cart</button>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Book Shop. Powered by Hesanda.</p>
     </footer>
