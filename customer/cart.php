@@ -220,6 +220,11 @@ $cartItems = getCartItems($conn, $cart_id);
     </style>
 </head>
 <body>
+<div id="header-container">
+    <?php
+        include "header.html"
+        ?>
+    </div>
 
 <div class="header">
     <h1>Your Cart</h1>

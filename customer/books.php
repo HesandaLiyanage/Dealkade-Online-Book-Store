@@ -7,11 +7,35 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$products = [
-    ['id' => 1, 'name' => 'Book 1', 'price' => 49.99, 'image' => 'https://via.placeholder.com/150x200'],
-    ['id' => 2, 'name' => 'Book 2', 'price' => 79.99, 'image' => 'https://via.placeholder.com/150x200'],
-    // Add other products as needed
-];
+include "../db_connect.php";
+
+$sql = "SELECT p.id , p.name , p.price , i.img_url FROM products p JOIN product_images i ON p.id = i.product_id";
+$result = $conn->query($sql);
+
+
+$products = [];
+
+if ($result -> num_rows > 0){
+
+    while ($row = $result->fetch_assoc()) {
+        $products[] = [
+            'id' => $row['id'],
+            'name'=> $row['name'],
+            'price'=> $row['price'],
+            'image'=> $row['img_url'],
+        ];
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+
+// $products = [
+//     ['id' => 1, 'name' => 'Book 1', 'price' => 49.99, 'image' => 'https://via.placeholder.com/150x200'],
+//     ['id' => 2, 'name' => 'Book 2', 'price' => 79.99, 'image' => 'https://via.placeholder.com/150x200'],
+//     // Add other products as needed
+// ];
 
 ?>
 
