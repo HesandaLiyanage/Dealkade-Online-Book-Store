@@ -63,7 +63,6 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$49.99</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=2">
@@ -72,7 +71,6 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$79.99</p>
                     <p class="rating">★★★★★</p>
                     </a>
-                    <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=3">
@@ -81,7 +79,6 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$89.99</p>
                     <p class="rating">★★★☆☆</p>
                     </a>
-                    <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=4">
@@ -90,7 +87,6 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$59.99</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=5">
@@ -99,7 +95,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$69.69</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
+                    
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=6">
@@ -108,7 +104,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$129.99</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
+                    
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=7">
@@ -117,7 +113,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$29.99</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
+                    
                 </div>
                 <div class="product-card">
                     <a href="book-details.php?id=8">
@@ -126,7 +122,7 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="price">$229.99</p>
                     <p class="rating">★★★★☆</p>
                     </a>
-                    <button>Add to Cart</button>
+                    <!--removed add to cart buttons here-->
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection
-include '../config/database.php'; // Make sure this file includes your database connection
+include '../db_connect.php'; // Make sure this file includes your database connection
 
 $user_id = $_SESSION['user_id'];
 $product_id = $_POST['product_id'];
@@ -50,9 +50,9 @@ if ($item) {
     $stmt->execute();
 } else {
     // Insert new item into cart
-    $query = "INSERT INTO cart_items (cart_id, product_id, price, quantity) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO cart_items (cart_id, product_id,  quantity) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iidi", $cart_id, $product_id, $price, $quantity);
+    $stmt->bind_param("idi", $cart_id, $product_id,  $quantity); //removed $price from top and here
     $stmt->execute();
 }
 
