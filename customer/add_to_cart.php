@@ -49,7 +49,7 @@ if ($item) {
     $stmt->bind_param("iii", $quantity, $cart_id, $product_id);
     $stmt->execute();
 } else {
-    // Insert new item into cart
+    
     $query = "INSERT INTO cart_items (cart_id, product_id,  quantity) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("idi", $cart_id, $product_id,  $quantity); //removed $price from top and here
