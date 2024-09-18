@@ -48,7 +48,7 @@ $result_users = $conn->query($sql_users);
                                 <td>{$user['name']}</td>
                                 <td>{$user['address']}</td>
                                 <td>{$user['phone_number']}</td>
-                                <td><a href='view_user.php?id={$user['id']}'>View Details</a></td>
+                                <td><a href='viewUser.php?id={$user['id']}'>View Details</a></td>
                               </tr>";
                     }
                 } else {

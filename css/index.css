@@ -50,6 +50,12 @@ input[type="text"]:focus, input[type="password"]:focus {
   outline: none;
 }
 
+.edit-user{
+  text-align: left;
+  margin-left: 30px;
+  
+}
+
 button {
   padding: 10px;
   background-color: #28a745;

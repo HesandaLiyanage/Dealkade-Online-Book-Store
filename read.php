@@ -22,19 +22,21 @@ if ($result_user->num_rows > 0) {
 
     // Display user details
     echo "<div class='prof'>
-            <h1>My Profile</h1>
-            <p>Name: " . htmlspecialchars($user_details['name']) . "</p>
-            <p>Email: " . htmlspecialchars($user_details['username_or_email']) . "</p>
-            <p>Address: " . htmlspecialchars($user_details['address']) . "</p>
-            <p>Phone Number: " . htmlspecialchars($user_details['phone_number']) . "</p>
-          </div>";
+    <h1>My Profile</h1>
+    <div class='profile-details'>
+        <p><h4>Name</h4> " . $user_details['name'] . "</p>
+        <p><h4>Email</h4> " . $user_details['username_or_email']. "</p>
+        <p><h4>Address </h4>" . $user_details['address']. "</p>
+        <p><h4>Phone Number </h4>" . $user_details['phone_number'] . "</p>
+    </div>
+</div>";
+
 
     // Step 2: Fetch user orders
     $sql_orders = "SELECT id, total_amount, status, created_at FROM orders WHERE user_id = $user_id";
     $result_orders = $conn->query($sql_orders);
 
-    if ($result_orders->num_rows > 0) {
-        echo "<div class='orders'>
+    echo "<div class='orders'>
                 <h2>My Orders</h2>
                 <table>
                     <tr>
@@ -43,12 +45,15 @@ if ($result_user->num_rows > 0) {
                         <th>Status</th>
                         <th>Created At</th>
                     </tr>";
+
+    if ($result_orders->num_rows > 0) {
+        
         while ($order = $result_orders->fetch_assoc()) {
             echo "<tr>
-                    <td>" . htmlspecialchars($order['id']) . "</td>
-                    <td>$" . number_format($order['total_amount'], 2) . "</td>
-                    <td>" . htmlspecialchars($order['status']) . "</td>
-                    <td>" . htmlspecialchars($order['created_at']) . "</td>
+                    <td>" . $order['id'] . "</td>
+                    <td>" . $order['total_amount'], 2 . "</td>
+                    <td>" . $order['status'] . "</td>
+                    <td>" . $order['created_at'] . "</td>
                   </tr>";
         }
         echo "  </table>
