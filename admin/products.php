@@ -4,7 +4,8 @@ session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['role']) === 'admin') {
     // header("Location: ../Login/index.php"); // Redirect to login if not logged in
-    echo "You aren't an admin!!!"
+    echo "You aren't an admin!!!";
+    // header("Location: ../Login/index.php");
     exit();
 }
 
@@ -162,7 +163,7 @@ $conn->close();
                         <td><?php echo htmlspecialchars($product['stock_quantity']); ?></td>
                         <td>
                             <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="btn btn-edit">Edit</a>
-                            <a href="delete_product.php?id=<?php echo $product['id']; ?>" class="btn btn-delete">Delete</a>
+                            <a href="delete_product.php?id=<?php echo $product['id']; ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
