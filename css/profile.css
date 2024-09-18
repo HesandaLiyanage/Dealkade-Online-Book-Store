@@ -1,0 +1,78 @@
+/* CSS for Profile Page */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .prof, .orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .prof h1, .orders h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .prof p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .orders table th, .orders table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .orders table th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .orders table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .orders table tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  /* Optional: Add some responsiveness */
+  @media (max-width: 768px) {
+    .prof, .orders {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    .orders table th, .orders table td {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  
+  /* Header styling */
+  .head {
+    z-index: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blueviolet;
+    text-align: center;
+  }
+  
