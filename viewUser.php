@@ -35,7 +35,7 @@ echo "
         <p><h4>Email</h4> " . $user['username_or_email']. "</p>
         <p><h4>Address </h4>" . $user['address']. "</p>
         <p><h4>Phone Number </h4>" . $user['phone_number'] . "</p>
-        <a href='UpdateUser.php?id=" . $user['id'] ."' >Edit User</a>
+        <a href='UpdateUser.php?id=" . $user['id'] ."' class='button' onclick='alertUpd >Edit User</a>
 <a href='deleteUser.php?id=" . $user['id'] ."'>Delete User</a>
     </div>
 </div>
