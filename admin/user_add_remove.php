@@ -24,6 +24,11 @@ $result_users = $conn->query($sql_users);
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 <body>
+<div id="header-container">
+        <?php
+            include "header.html"
+            ?>
+        </div>
     <div class="admin-dashboard">
         <h1>Admin Dashboard</h1>
         <table>
@@ -47,7 +52,7 @@ $result_users = $conn->query($sql_users);
                                 <td>{$user['name']}</td>
                                 <td>{$user['address']}</td>
                                 <td>{$user['phone_number']}</td>
-                                <td><a href='viewUser.php?id={$user['id']}'>View Details</a></td>
+                                <td><a href='viewUser.php?id={$user['id']}' class='button'>View More</a></td>
                               </tr>";
                     }
                 } else {

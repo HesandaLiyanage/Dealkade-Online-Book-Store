@@ -12,7 +12,7 @@ if (!isset($_SESSION['role']) === 'admin') {
 
 <?php
 
-include "config.php";
+include "../db_connect.php";
 
 if(isset($_POST['submit'])){
 
@@ -41,14 +41,14 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Products</title>
-    <link rel="stylesheet" href="ordermgt.css">k
+    <link rel="stylesheet" href="../css/ordermgt.css">k
 </head>
 <body>
     <header>
         <div class="header">
             <h1>BookShop</h1>
             <nav>
-                <a href="index.php">Home</a>
+                <a href="dashboard.php">Home</a>
                 <a href="cart.php">Cart</a>
                 <a href="login.php">Login</a>
             </nav>
@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
         <div class="btn-add-new">
             <form action="#" method="POST">
             <input type="hidden" name ="id" id ="id">
-            <button type = "submit" class="btn btn-add" name="submit" onclick = "cancelorder()" >Cancel Order</button>
+            <button type = "submit" class="btn btn-add" name="submit" onclick = "cancelorder()" >Delete Order</button>
             </form>
         </div>
         <table>
@@ -78,7 +78,7 @@ if(isset($_POST['submit'])){
             </thead>
             <tbody>
                 <?php
-                    include "config.php";
+                    include "../db_connect.php";
 
                         $sql = " SELECT * FROM `orders`  WHERE 1";
                         $newdata =mysqli_query($conn,$sql);
