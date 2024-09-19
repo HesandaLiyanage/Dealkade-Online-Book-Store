@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once('connect.php');
+require_once('db_connect.php');
 include "header.php";
 
 // Debugging: Check if session variable is set
