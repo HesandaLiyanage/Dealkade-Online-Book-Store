@@ -45,6 +45,11 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Products</title>
+    <script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this product?');
+    }
+    </script>
     <style>
         /* General Styles */
         body {
@@ -163,7 +168,7 @@ $conn->close();
                         <td><?php echo htmlspecialchars($product['stock_quantity']); ?></td>
                         <td>
                             <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="btn btn-edit">Edit</a>
-                            <a href="delete_product.php?id=<?php echo $product['id']; ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                            <a href="delete_product.php?id=<?php echo $product['id']; ?>" class="btn btn-delete" onclick="return confirmDelete();">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
