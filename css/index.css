@@ -75,7 +75,7 @@ select {
   gap: 20px;
   overflow: hidden;
   position: relative;
-  animation: slide 10s linear infinite; /* Updated slide animation */
+  /*animation: slide 10s linear infinite; /* Updated slide animation */
 }
 
 .product {
@@ -121,7 +121,7 @@ footer {
 }
 
 /* Smooth Sliding Animation */
-@keyframes slide {
+/* @keyframes slide {
   0% {
     transform: translateX(0);
   }
@@ -140,4 +140,4 @@ footer {
   100% {
     transform: translateX(0);
   }
-}
+} */
