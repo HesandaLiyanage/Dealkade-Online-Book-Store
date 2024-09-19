@@ -7,17 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// // Connect to the database
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "dealkade";
-
-// $conn = new mysqli($servername, $username, $password, $dbname);
-
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// }
 include "../db_connect.php";
 
 // Get the product (book) ID from the URL
@@ -38,10 +27,6 @@ if ($product_id > 0) {
             WHERE products.id = $product_id";
     
     $result = $conn->query($sql);
-
-    if ($result === false) {
-        die("Error in query: " . $conn->error);
-    }
 
     if ($result->num_rows > 0) {
         $product = $result->fetch_assoc();
@@ -73,154 +58,28 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($product_name); ?></title>
-    <style>
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f4f4f4;
-}
-
-/* Header */
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Main Product Page Layout */
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.product-container {
-    display: flex;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 1200px;
-}
-
-.product-image {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.product-image img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.product-details {
-    flex: 2;
-}
-
-.product-price {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FF6F61;
-    margin: 10px 0;
-}
-
-.product-description {
-    margin: 15px 0;
-}
-
-/* Colorful Buttons */
-.button-container {
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-.buy-now {
-    background-color: #FF6F61;
-    color: white;
-}
-
-.add-to-cart {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.wishlist {
-    background-color: #FFCC00;
-    color: black;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-</style>
+    <link rel="stylesheet" href="../css/book-details.css">
 </head>
 <body>
-
-    <!-- Your existing header -->
     <header>
-        <!-- <div class="header-content">
-            <h1>My Bookshop</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Cart</a></li>
-                </ul>
-            </nav>
-        </div> -->
         <?php
         include "header.html"
         ?>
     </header>
-
-    <!-- Fullscreen Product Page Content -->
     <main>
         <div class="product-details-container">
             <!-- Product Image -->
             <div class="product-image">
-                <img src="<?php echo htmlspecialchars($image_url); ?>" alt="<?php echo htmlspecialchars($product_name); ?>" />
+                <img src="<?php echo $image_url; ?>" alt="<?php echo $product_name; ?>" />
             </div>
 
             <!-- Product Information -->
             <div class="product-info">
-                <h1><?php echo htmlspecialchars($product_name); ?></h1>
-                <p><strong>Category:</strong> <?php echo htmlspecialchars($category_name); ?></p>
-                <p><strong>Price:</strong> <?php echo htmlspecialchars($price); ?></p>
-                <p><strong>Stock Available:</strong> <?php echo htmlspecialchars($stock); ?></p>
-                <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($description)); ?></p>
+                <h1><?php echo $product_name; ?></h1>
+                <p><strong>Category:</strong> <?php echo $category_name; ?></p>
+                <p><strong>Price:</strong> <?php echo $price; ?></p>
+                <p><strong>Stock Available:</strong> <?php echo $stock; ?></p>
+                <p><strong>Description:</strong> <?php echo nl2br($description); ?></p>
 
                 <!-- Colorful Buttons -->
                 <div class="button-container">
@@ -235,7 +94,6 @@ main {
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit" class="btn buy-now">Buy Now</button>
                     </form>
-                    <!-- <button class="btn wishlist">Add to Wishlist</button> -->
                 </div>
             </div>
 
@@ -246,8 +104,8 @@ main {
                     <ul>
                         <?php foreach ($reviews as $review): ?>
                             <li class="review">
-                                <p><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating']); ?>/5</p>
-                                <p><strong>Comment:</strong> <?php echo htmlspecialchars($review['comment']); ?></p>
+                                <p><strong>Rating:</strong> <?php echo $review['rating']; ?>/5</p>
+                                <p><strong>Comment:</strong> <?php echo $review['comment']; ?></p>
                             </li>
                         <?php endforeach; ?>
                     </ul>

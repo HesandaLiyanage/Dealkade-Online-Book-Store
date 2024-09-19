@@ -73,11 +73,11 @@ $conn->close();
             <tbody>
                 <?php foreach ($products as $product): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($product['id']); ?></td>
-                        <td><?php echo htmlspecialchars($product['product_name']); ?></td>
-                        <td><?php echo htmlspecialchars($product['category_name']); ?></td>
-                        <td><?php echo htmlspecialchars("$" . number_format($product['price'], 2)); ?></td>
-                        <td><?php echo htmlspecialchars($product['stock_quantity']); ?></td>
+                        <td><?php echo $product['id']; ?></td>
+                        <td><?php echo $product['product_name']; ?></td>
+                        <td><?php echo $product['category_name']; ?></td>
+                        <td><?php echo "$" . number_format($product['price'], 2); ?></td>
+                        <td><?php echo $product['stock_quantity']; ?></td>
                         <td>
                             <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="btn btn-edit">Edit</a>
                             <a href="delete_product.php?id=<?php echo $product['id']; ?>" class="btn btn-delete" onclick="return confirmDelete();">Delete</a>

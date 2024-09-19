@@ -1,18 +1,6 @@
 <?php
 // Assuming you have a database connection (adjust with your DB credentials)
-$servername = "localhost";
-
-$username = "root";
-$password = "";
-
-$dbname = "dealkade";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+include "../db_connect.php"
 
 // Get search query, category, and price range from the form
 $search = isset($_GET['query']) ? trim($_GET['query']) : '';
@@ -51,9 +39,12 @@ if ($priceRange !== 'all') {
     }
 }
 
-$stmt = $conn->prepare($sql);
-$stmt->execute($params);
-$books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$result = $conn->query($sql);
+$books = [];
+while ($row = $result->fetch_assoc()) {
+    $books[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -64,90 +55,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Search Results</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<style>
-    /* Basic reset */
-body, h2, h3, p {
-    margin: 0;
-    padding: 0;
-}
-
-/* Container for search results */
-.search-results-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-/* Heading */
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Book list layout */
-.book-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-/* Individual book item */
-.book-item {
-    flex: 1 1 calc(25% - 20px); /* Adjusts the number of items per row */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.book-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Book link */
-.book-link {
-    text-decoration: none;
-    color: #333;
-}
-
-/* Book image */
-.book-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Book title */
-.book-title {
-    font-size: 1.25em;
-    margin: 15px 0;
-}
-
-/* Price styling */
-.price {
-    font-size: 1.1em;
-    color: #e74c3c;
-    margin-bottom: 10px;
-}
-
-/* Rating styling */
-.rating {
-    font-size: 1em;
-    color: #f1c40f;
-}
-
-/* No results message */
-p {
-    font-size: 1.1em;
-    color: #555;
-}
-</style>
+<link rel="stylesheet" href="../css/search.css">
 <body>
     <div class="search-results-container">
         <h2>Search Results:</h2>
@@ -156,8 +64,8 @@ p {
                 <?php foreach ($books as $book): ?>
                     <div class="book-item">
                         <a href="book-details.php?id=<?= $book['id'] ?>">
-                            <img src="<?= $book['img_url'] ?: 'default-image.png' ?>" alt="<?= htmlspecialchars($book['name']) ?>">
-                            <h3><?= htmlspecialchars($book['name']) ?></h3>
+                            <img src="<?= $book['img_url'] ?: 'default-image.png' ?>" alt="<?= $book['name'] ?>">
+                            <h3><?= $book['name'] ?></h3>
                             <p class="price">$<?= number_format($book['price'], 2) ?></p>
                             <p class="rating">
                                 <?= isset($book['rating']) ? str_repeat('★', $book['rating']) . str_repeat('☆', 5 - $book['rating']) : 'No rating available' ?>
