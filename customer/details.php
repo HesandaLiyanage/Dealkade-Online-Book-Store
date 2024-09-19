@@ -55,14 +55,9 @@ $user_id = $_SESSION['user_id'];
         <link rel="stylesheet" href="../css/details.css">
     </head>
     <body>
-        <div class="header">
-            <h1>BookShop</h1>
-            <nav>
-                <a href="index.php">Home</a>
-                <a href="cart.php">Cart</a>
-                <a href="login.php">Login</a>
-            </nav>
-        </div>
+    <div id="header-container">
+        <?php include "header.html"; ?>
+    </div>
             <div class="container">
                 <div class="content">
                     <form id="signup-form" class="form" method="POST" action="#">

@@ -74,6 +74,9 @@ $conn->close();
     <link rel="stylesheet" type="text/css" href="../css/profile.css">
 </head>
 <body>
+<div id="header-container">
+        <?php include "header.html"; ?>
+    </div>
 <footer>
         <p>&copy; 2024 DealKade Book Shop.</p>
     </footer>
