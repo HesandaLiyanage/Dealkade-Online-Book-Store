@@ -50,8 +50,13 @@ $conn->close();
     <link rel="stylesheet" href="../css/products.css">
 </head>
 <body>
+<div id="header-container">
+        <?php
+            include "header.html"
+            ?>
+        </div>
     <header>
-        <h1>Admin Dashboard - Manage Products</h1>
+        <h3>Admin Dashboard - Manage Products</h3>
     </header>
 
     <!-- Product List -->
