@@ -45,13 +45,13 @@ body {
 .prof, .orders {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Correcting 'left' to 'flex-start' */
+  align-items: flex-start; 
   margin: 20px auto;
   background-color: #ffffff; /* White background */
   padding: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  max-width: 600px; /* Increased max width */
+  max-width: 600px; 
 }
 
 .prof h1, .orders h2 {
@@ -62,7 +62,7 @@ body {
 
 .prof p {
   font-size: 16px;
-  color: #444; /* Dark gray for better readability */
+  color: #444; 
   margin: 8px 0;
   font-weight: bold;
 }
@@ -75,14 +75,14 @@ body {
 
 .orders table th, .orders table td {
   border: 1px solid #ddd;
-  padding: 12px; /* Increased padding */
+  padding: 12px; 
   text-align: left;
   font-size: 15px;
 }
 
 .orders table th {
-  background-color: #f0f8ff; /* Lighter blue for header */
-  color: #003366; /* Dark blue for header text */
+  background-color: #67696a; 
+  color: #111111; 
 }
 
 .orders table tr:nth-child(even) {
@@ -97,7 +97,7 @@ body {
 
 .button {
   padding: 10px;
-  background-color: #28a745;
+  background-color: #green;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -106,6 +106,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #218838;
-}
+
+
+

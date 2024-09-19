@@ -1,105 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
 
-/* Resetting margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* General styles */
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 20px;
-  }
-  
-  /* Admin dashboard styles */
-  .admin-dashboard {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-dashboard h1 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .admin-dashboard table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .admin-dashboard table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  .admin-dashboard th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .admin-dashboard th {
-    background-color: #f2f2f2;
-  }
-  
-  .admin-dashboard tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .admin-dashboard a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .admin-dashboard a:hover {
-    text-decoration: underline;
-  }
-  
-  /* User details styles */
-  .user-details {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-details h1, .user-details h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .user-details table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .user-details table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  .user-details th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .user-details th {
-    background-color: #f2f2f2;
-  }
-  
-  .user-details tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  
+/* Header */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+
+.admin-table {
+  width: 80%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: grey;
+  color:black;
+}
+
+td a {
+  color: #FF6F61;
+  text-decoration: none;
+}
+
+/* Buttons */
 .button {
-  padding: 10px;
-  background-color: #28a745;
-  color: #fff;
+  padding: 8px 15px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+background-color: rgb(231, 204, 100);
+color: Black;
+}
+
+
+.button:hover {
+  opacity: 0.9;
 }
