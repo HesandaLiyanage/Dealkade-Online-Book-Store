@@ -16,48 +16,31 @@ $product = null;
 // Fetch the product data based on the ID
 if ($product_id) {
     $sql = "SELECT * FROM products WHERE id = $product_id";
-    $stmt = $conn->prepare($sql);
+    $result = $conn->query($sql);
 
-    if ($stmt === false) {
-        die('Prepare failed: ' . $conn->error);
+    if ($result === false) {
+        die('Query failed: ' . $conn->error);
     }
-
-    $stmt->execute();
-    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $product = $result->fetch_assoc();
     }
-    $stmt->close();
 }
 
-// Handle form submission for updating the product
+
+// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $stock_quantity = $_POST['stock_quantity'];
-
-    // Ensure values are quoted and properly formatted
-    $name = $conn->real_escape_string($name);
     $price = floatval($price);
     $stock_quantity = intval($stock_quantity);
 
     $update_sql = "UPDATE products SET name = '$name', price = $price, stock_quantity = $stock_quantity WHERE id = $product_id";
-    $update_stmt = $conn->prepare($update_sql);
+    $conn->query($update_sql);
+    $conn->close();
 
-    if ($update_stmt === false) {
-        die('Prepare failed: ' . $conn->error);
-    }
-
-    $update_stmt->execute();
-
-    if ($update_stmt->errno) {
-        die('Execute failed: ' . $update_stmt->error);
-    }
-
-    $update_stmt->close();
-
-    header("Location: products.php"); // Redirect back to the product management page
+    header("Location: products.php");
     exit();
 }
 
@@ -77,13 +60,13 @@ $conn->close();
     <?php if ($product): ?>
         <form method="POST" action="">
             <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required><br>
+            <input type="text" id="name" name="name" value="<?php echo $product['name']; ?>" required><br>
 
             <label for="price">Price:</label>
-            <input type="number" step="0.01" id="price" name="price" value="<?php echo htmlspecialchars($product['price']); ?>" required><br>
+            <input type="number" step="0.01" id="price" name="price" value="<?php echo $product['price']; ?>" required><br>
 
             <label for="stock_quantity">Stock Quantity:</label>
-            <input type="number" id="stock_quantity" name="stock_quantity" value="<?php echo htmlspecialchars($product['stock_quantity']); ?>" required><br>
+            <input type="number" id="stock_quantity" name="stock_quantity" value="<?php echo $product['stock_quantity']; ?>" required><br>
 
             <button type="submit">Update Product</button>
         </form>
