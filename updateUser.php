@@ -1,10 +1,11 @@
 <?php
+session_start();
 require_once('db_connect.php');
 
-$user_id = $_GET['id'];
+$username_or_email = $_SESSION['username_or_email'];
 
 // Fetch user details for pre-filling the form
-$sql_user = "SELECT id, username_or_email, name, address, phone_number FROM users WHERE id = '$user_id' ";
+$sql_user = "SELECT id, username_or_email, name, address, phone_number FROM users WHERE username_or_email = '$username_or_email' ";
 $result_user = $conn->query($sql_user);
 
 if ($result_user->num_rows > 0) {
@@ -21,10 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone_number = $_POST['phone_number'];
 
     // Update user in the database
-    $sql_update = "UPDATE users SET name='$name', address='$address', phone_number='$phone_number' WHERE id=$user_id";
+    $sql_update = "UPDATE users SET name='$name', address='$address', phone_number='$phone_number' WHERE username_or_email = '$username_or_email'";
 
     if ($conn->query($sql_update) === TRUE) {
         echo "User updated successfully.";
+        header("Location:read.php");
     } else {
         echo "Error updating user: " . $conn->error;
     }
@@ -38,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
     <link rel="stylesheet" href="css/index.css">
+    <script src='js/alert.js'></script>
 </head>
 <body>
     <div class="edit-user">
@@ -52,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="phone_number">Phone Number:</label>
             <input type="text" id="phone_number" name="phone_number" value="<?php echo $user['phone_number']; ?>" required><br>
             <br>
-            <button type="submit">Update User</button>
+            <button type="submit" >Update User</button>
         </form>
     </div>
 </body>

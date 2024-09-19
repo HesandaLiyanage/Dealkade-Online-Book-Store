@@ -27,9 +27,14 @@ if ($result_user->num_rows > 0) {
         <p><h4>Name</h4> " . $user_details['name'] . "</p>
         <p><h4>Email</h4> " . $user_details['username_or_email']. "</p>
         <p><h4>Address </h4>" . $user_details['address']. "</p>
-        <p><h4>Phone Number </h4>" . $user_details['phone_number'] . "</p>
+        <p><h4>Phone Number </h4>" . $user_details['phone_number'] . "</p><br>
+        <p><a  href='UpdateUser.php' class='button' onclick='up();' >Edit User</a></p>
+
     </div>
-</div>";
+</div>        
+        ";
+
+
 
 
     // Step 2: Fetch user orders
@@ -57,7 +62,11 @@ if ($result_user->num_rows > 0) {
                   </tr>";
         }
         echo "  </table>
-              </div>";
+
+        <a  href='UpdateUser.php' class='button' onclick='up();' >Edit User</a>
+              </div>
+        ";
+
     } else {
         echo "<p>You have no orders.</p>";
     }
@@ -72,4 +81,10 @@ $conn->close();
 <head>
     <link rel="stylesheet" type="text/css" href="css/profile.css">
 </head>
+<body>
+    <script>
+        function up()
+        {
+            alert("Do you want to edit your profile?");
+        }
 </html>
