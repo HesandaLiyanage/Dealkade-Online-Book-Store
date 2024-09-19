@@ -2,19 +2,19 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['role']) === 'admin') {
+if (!isset($_SESSION['user_id'])) {
     // header("Location: ../Login/index.php"); // Redirect to login if not logged in
-    echo "You aren't an admin!!!";
+    echo "You aren't logged in";
     // header("Location: ../Login/index.php");
     exit();
 }
 ?>
 
 <?php
-include ("config.php");
+include "../db_connect.php";
+$user_id = $_SESSION['user_id'];
 
-
-    $view ="SELECT * FROM `users` WHERE  `username_or_email` = 'admin@example.com'";  //need toremove and add sessions
+    $view ="SELECT * FROM `users` WHERE  `id` = '$user_id'";  
     $newdata =mysqli_query($conn,$view);
     
     if(!$newdata){
@@ -25,7 +25,7 @@ include ("config.php");
     
     
 
-    /*if(isset($_POST['save']))
+    if(isset($_POST['save'])){
 
         $username =  $_POST['username_or_email'];
         $password = $_POST['password'];
@@ -34,16 +34,16 @@ include ("config.php");
         $telephone = $_POST['phone_number'];
 
     
-        $data= "UPDATE `users` SET `username_or_email`='[$username]',`password`='[$password]',`name`='[$name]',`address`='[$address]',`phone_number`='[$phone_number]' WHERE 1
+        $data= "UPDATE `users` SET `username_or_email`='$username',`password`='$password',`name`='$name',`address`='$address',`phone_number`='MD5($telephone)' WHERE id = $user_id";
         $newdata =mysqli_query($conn,$data);
     
         if(!$newdata){  
             die('could not connect:');
         }
-        header('location:Login.php');
+        header('location:read.php');
         
         mysqli_close($conn);
-    } */   
+    }    
 
 ?>
 
@@ -52,15 +52,15 @@ include ("config.php");
     <head>
         <meta charset="utf-8">
         <title>Account Deatils</title>   
-        <link rel="stylesheet" href="details.css">
+        <link rel="stylesheet" href="../css/details.css">
     </head>
     <body>
         <div class="header">
             <h1>BookShop</h1>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="cart.html">Cart</a>
-                <a href="login.html">Login</a>
+                <a href="index.php">Home</a>
+                <a href="cart.php">Cart</a>
+                <a href="login.php">Login</a>
             </nav>
         </div>
             <div class="container">
@@ -89,7 +89,7 @@ include ("config.php");
                     <button style="background-color:white; color:black; "onclick="window.location.href = '#'">
                         Account Details
                     </button>
-                    <button onclick="window.location.href = '../dealkade/orders.php'">
+                    <button onclick="window.location.href = 'orders.php'">
                         Past Orders
                     </button>
                 </div>

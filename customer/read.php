@@ -28,6 +28,7 @@ if ($result_user->num_rows > 0) {
         <p><h4>Email</h4> " . $user_details['username_or_email']. "</p>
         <p><h4>Address </h4>" . $user_details['address']. "</p>
         <p><h4>Phone Number </h4>" . $user_details['phone_number'] . "</p>
+        <p><a  href='details.php' class='button' onclick='up();' >Edit User</a></p>
     </div>
 </div>";
 
@@ -70,6 +71,11 @@ $conn->close();
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
 </head>
+<body>
+<footer>
+        <p>&copy; 2024 DealKade Book Shop.</p>
+    </footer>
+</body>
 </html>

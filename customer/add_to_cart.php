@@ -16,8 +16,8 @@ $price = $_POST['price'];
 $quantity = 1; // Default quantity
 
 // Get the cart ID for the current user
-$query = "SELECT id FROM cart WHERE user_id = $user_id";
-$result = $conn->prepare($query);
+$sql = "SELECT id FROM cart WHERE user_id = $user_id";
+$result = $conn->query($sql);
 $cart = $result->fetch_assoc();
 
 if ($cart) {

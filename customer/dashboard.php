@@ -15,7 +15,7 @@ if (!isset($_SESSION['username_or_email']) === 'admin') {
     <head>
         <meta charset="utf-8">
         <title>My Account</title>
-        <link rel="stylesheet" href="indexstyle.css">
+        <link rel="stylesheet" href="../css/indexstyle.css">
     </head>
     <body>
 
@@ -24,9 +24,9 @@ if (!isset($_SESSION['username_or_email']) === 'admin') {
     <div class="header">
         <h1>BookShop</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="cart.html">Cart</a>
-            <a href="login.html">Login</a>
+            <a href="index.php">Home</a>
+            <a href="cart.php">Cart</a>
+            <a href="../login/index.php">Login</a>
         </nav>
     </div>
 
@@ -36,7 +36,7 @@ if (!isset($_SESSION['username_or_email']) === 'admin') {
                     <h3 class ="sub-text">Control panel</h3>
                         <div class="order-btn"  >
                             <a href="read.php"><button type="submit" name='user'>User Details</button></a>
-                            <a href="../dealkade/orders.php"><button type="submit" name='history' >Order History</button></a>          
+                            <a href="orders.php"><button type="submit" name='history' >Order History</button></a>          
 					   </div>
                 </div>   
             
