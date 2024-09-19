@@ -1,0 +1,54 @@
+body {
+    background-color: black;
+    color: yellow;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: green;
+}
+
+form {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+button {
+    background-color: green;
+    color: yellow;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: yellow;
+    color: black;
+    border: 1px solid green;
+}
+
+p {
+    color: red;
+}

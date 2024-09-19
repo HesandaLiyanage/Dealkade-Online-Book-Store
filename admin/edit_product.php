@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is logged in and is an admin
-if (!isset($_SESSION['role']) === 'admin') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     echo "You aren't an admin!!!";
     exit();
 }
@@ -15,9 +15,13 @@ $product = null;
 
 // Fetch the product data based on the ID
 if ($product_id) {
-    $sql = "SELECT * FROM products WHERE id = ?";
+    $sql = "SELECT * FROM products WHERE id = $product_id";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id);
+
+    if ($stmt === false) {
+        die('Prepare failed: ' . $conn->error);
+    }
+
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -32,12 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $stock_quantity = $_POST['stock_quantity'];
-    $category_id = $_POST['category_id'];
 
-    $update_sql = "UPDATE products SET name = ?, price = ?, stock_quantity = ?, category_id = ? WHERE id = ?";
+    // Ensure values are quoted and properly formatted
+    $name = $conn->real_escape_string($name);
+    $price = floatval($price);
+    $stock_quantity = intval($stock_quantity);
+
+    $update_sql = "UPDATE products SET name = '$name', price = $price, stock_quantity = $stock_quantity WHERE id = $product_id";
     $update_stmt = $conn->prepare($update_sql);
-    $update_stmt->bind_param("sdiii", $name, $price, $stock_quantity, $category_id, $product_id);
+
+    if ($update_stmt === false) {
+        die('Prepare failed: ' . $conn->error);
+    }
+
     $update_stmt->execute();
+
+    if ($update_stmt->errno) {
+        die('Execute failed: ' . $update_stmt->error);
+    }
+
     $update_stmt->close();
 
     header("Location: products.php"); // Redirect back to the product management page
@@ -53,98 +70,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: #f4f4f4;
-    }
-
-/* Header */
-    header {
-        background-color: #333;
-        color: white;
-        padding: 10px 20px;
-    }
-
-    header h1 {
-        margin: 0;
-    }
-
-/* Product Form */
-    .product-form {
-        width: 80%;
-        margin: 20px auto;
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-    }
-
-    .product-form h1 {
-        margin-top: 0;
-    }
-
-    .product-form label {
-        display: block;
-        margin: 10px 0 5px;
-    }
-
-    .product-form input {
-        width: calc(100% - 22px);
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .product-form button {
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    .product-form button:hover {
-        opacity: 0.9;
-    }
-
-/* Buttons */
-    .btn {
-        padding: 8px 15px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        margin-right: 10px;
-    }
-
-    .btn-add {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    .btn-edit {
-        background-color: #FFCC00;
-        color: black;
-    }
-
-    .btn-delete {
-        background-color: #FF6F61;
-        color: white;
-    }
-
-    .btn:hover {
-        opacity: 0.9;
-    }
-
-    </style>
 </head>
+<link rel="stylesheet" href="../css/edit_product.css">
 <body>
     <h1>Edit Product</h1>
     <?php if ($product): ?>
@@ -157,9 +84,6 @@ $conn->close();
 
             <label for="stock_quantity">Stock Quantity:</label>
             <input type="number" id="stock_quantity" name="stock_quantity" value="<?php echo htmlspecialchars($product['stock_quantity']); ?>" required><br>
-
-            <!-- <label for="category_id">Category:</label>
-            <input type="number" id="category_id" name="category_id" value="<?php echo htmlspecialchars($product['category_id']); ?>" required><br> -->
 
             <button type="submit">Update Product</button>
         </form>

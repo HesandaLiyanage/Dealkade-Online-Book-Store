@@ -18,38 +18,33 @@ if ($product_id) {
 
     try {
         // SQL statements
-        $sql1 = "DELETE FROM reviews WHERE product_id = ?;";
-        $sql2 = "DELETE FROM product_images WHERE product_id = ?;";
-        $sql3 = "DELETE FROM orders_items WHERE product_id = ?;";
-        $sql4 = "DELETE FROM cart_items WHERE product_id = ?;";
-        $sql5 = "DELETE FROM products WHERE id = ?;";
+        $sql1 = "DELETE FROM reviews WHERE product_id = $product_id;";
+        $sql2 = "DELETE FROM product_images WHERE product_id = $product_id;";
+        $sql3 = "DELETE FROM orders_items WHERE product_id = $product_id;";
+        $sql4 = "DELETE FROM cart_items WHERE product_id = $product_id;";
+        $sql5 = "DELETE FROM products WHERE id = $product_id;";
 
         // Prepare and execute the first query
         $stmt = $conn->prepare($sql1);
-        $stmt->bind_param("i", $product_id);
         if (!$stmt->execute()) echo "Failed to delete from reviews: " . $conn->error . "<br>";
         $stmt->close();
 
         // Prepare and execute the second query
         $stmt = $conn->prepare($sql2);
-        $stmt->bind_param("i", $product_id);
         if (!$stmt->execute()) echo "Failed to delete from product_images: " . $conn->error . "<br>";
         $stmt->close();
 
         // Prepare and execute the third query
         $stmt = $conn->prepare($sql3);
-        $stmt->bind_param("i", $product_id);
         if (!$stmt->execute()) echo "Failed to delete from orders_items: " . $conn->error . "<br>";
         $stmt->close();
 
         // Prepare and execute the final query (delete product)
         $stmt = $conn->prepare($sql4);
-        $stmt->bind_param("i", $product_id);
         if (!$stmt->execute()) echo "Failed to delete from cart_items: " . $conn->error . "<br>";
         $stmt->close();
 
         $stmt = $conn->prepare($sql5);
-        $stmt->bind_param("i", $product_id);
         if (!$stmt->execute()) echo "Failed to delete from products: " . $conn->error . "<br>";
         $stmt->close();
 
