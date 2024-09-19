@@ -10,18 +10,14 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $totalPrice = 0;
 
-// Function to get the user's cart
 function getCart($conn, $user_id) {
-    $stmt = $conn->prepare("SELECT * FROM cart WHERE user_id = ?");
-    $stmt->bind_param('i', $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $query = "SELECT * FROM cart WHERE user_id = $user_id";
+    $result = $conn->query($query);
     $cart = $result->fetch_assoc();
 
     if (!$cart) {
-        $stmt = $conn->prepare("INSERT INTO cart (user_id, created_at, updated_at) VALUES (?, NOW(), NOW())");
-        $stmt->bind_param('i', $user_id);
-        $stmt->execute();
+        $query = "INSERT INTO cart (user_id, created_at, updated_at) VALUES ($user_id, NOW(), NOW())";
+        $conn->query($query);
         $cart_id = $conn->insert_id;
     } else {
         $cart_id = $cart['id'];
@@ -32,13 +28,11 @@ function getCart($conn, $user_id) {
 
 // Function to get cart items
 function getCartItems($conn, $cart_id) {
-    $stmt = $conn->prepare("SELECT ci.id as cart_item_id, p.name, p.price, ci.quantity, ci.product_id
-                            FROM cart_items ci
-                            JOIN products p ON ci.product_id = p.id
-                            WHERE ci.cart_id = ?");
-    $stmt->bind_param('i', $cart_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $query = "SELECT ci.id as cart_item_id, p.name, p.price, ci.quantity, ci.product_id
+              FROM cart_items ci
+              JOIN products p ON ci.product_id = p.id
+              WHERE ci.cart_id = $cart_id";
+    $result = $conn->query($query);
     $cartItems = [];
     while ($row = $result->fetch_assoc()) {
         $cartItems[] = $row;
@@ -53,16 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update_quantity'])) {
         $product_id = $_POST['product_id'];
         $quantity = $_POST['quantity'];
-        $stmt = $conn->prepare("UPDATE cart_items SET quantity = ?, updated_at = NOW() WHERE cart_id = ? AND product_id = ?");
-        $stmt->bind_param('iii', $quantity, $cart_id, $product_id);
-        $stmt->execute();
+        $query = "UPDATE cart_items SET quantity = $quantity, updated_at = NOW() WHERE cart_id = $cart_id AND product_id = $product_id";
+        $conn->query($query);
     }
 
     if (isset($_POST['remove_from_cart'])) {
         $product_id = $_POST['product_id'];
-        $stmt = $conn->prepare("DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?");
-        $stmt->bind_param('ii', $cart_id, $product_id);
-        $stmt->execute();
+        $query = "DELETE FROM cart_items WHERE cart_id = $cart_id AND product_id = $product_id";
+        $conn->query($query);
     }
 
     if (isset($_POST['checkout'])) {
@@ -74,26 +66,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $status = "shipped";
-        $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, status, created_at, updated_at)
-                                VALUES (?, ?, ?, NOW(), NOW())");
-        $stmt->bind_param('ids', $user_id, $totalPrice, $status);
-        $stmt->execute();
+        $query = "INSERT INTO orders (user_id, total_amount, status, created_at, updated_at)
+                  VALUES ($user_id, $totalPrice, '$status', NOW(), NOW())";
+        $conn->query($query);
         $order_id = $conn->insert_id;
 
         foreach ($cartItems as $item) {
-            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price_at_purchase, created_at, updated_at)
-                                    VALUES (?, ?, ?, ?, NOW(), NOW())");
-            $stmt->bind_param('iiid', $order_id, $item['product_id'], $item['quantity'], $item['price']);
-            $stmt->execute();
+            $query = "INSERT INTO order_items (order_id, product_id, quantity, price_at_purchase, created_at, updated_at)
+                      VALUES ($order_id, {$item['product_id']}, {$item['quantity']}, {$item['price']}, NOW(), NOW())";
+            $conn->query($query);
         }
 
-        $stmt = $conn->prepare("DELETE FROM cart_items WHERE cart_id = ?");
-        $stmt->bind_param('i', $cart_id);
-        $stmt->execute();
+        $query = "DELETE FROM cart_items WHERE cart_id = $cart_id";
+        $conn->query($query);
 
         echo "<script>alert('Thank you for your purchase! Your order has been placed.');</script>";
     }
 }
+
 
 // Fetch cart and items
 $cart_id = getCart($conn, $user_id);
@@ -106,118 +96,7 @@ $cartItems = getCartItems($conn, $cart_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .header {
-            background-color: #333;
-            color: white;
-            padding: 5px;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #fff;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .item-details {
-            display: flex;
-            align-items: center;
-        }
-        .item-image {
-            width: 150px;
-            height: 200px;
-            border-radius: 10px;
-            margin-right: 20px;
-        }
-        .item-info h4 {
-            margin: 0;
-            font-size: 18px;
-        }
-        .item-info p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #777;
-        }
-        .item-price, .item-quantity, .item-total {
-            font-size: 16px;
-        }
-        .item-quantity input {
-            width: 50px;
-            text-align: center;
-        }
-        .item-actions {
-            display: flex;
-            align-items: center;
-        }
-        .item-actions button {
-            background-color: #f00;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .cart-summary {
-            text-align: right;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .checkout-form {
-            margin-top: 20px;
-        }
-        .checkout-form input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .checkout-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .checkout-form button:hover {
-            background-color: #45a049;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/cart.css">
 </head>
 <body>
 <div id="header-container">

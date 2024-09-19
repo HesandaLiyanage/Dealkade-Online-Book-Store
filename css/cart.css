@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.header {
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+.header h1 {
+    margin: 0;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.item-details {
+    display: flex;
+    align-items: center;
+}
+.item-image {
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.item-info h4 {
+    margin: 0;
+    font-size: 18px;
+}
+.item-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #777;
+}
+.item-price, .item-quantity, .item-total {
+    font-size: 16px;
+}
+.item-quantity input {
+    width: 50px;
+    text-align: center;
+}
+.item-actions {
+    display: flex;
+    align-items: center;
+}
+.item-actions button {
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.cart-summary {
+    text-align: right;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.checkout-form {
+    margin-top: 20px;
+}
+.checkout-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.checkout-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.checkout-form button:hover {
+    background-color: #45a049;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

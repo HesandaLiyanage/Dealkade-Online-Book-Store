@@ -16,44 +16,32 @@ $price = $_POST['price'];
 $quantity = 1; // Default quantity
 
 // Get the cart ID for the current user
-$query = "SELECT id FROM cart WHERE user_id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$query = "SELECT id FROM cart WHERE user_id = $user_id";
+$result = $conn->prepare($query);
 $cart = $result->fetch_assoc();
 
 if ($cart) {
     $cart_id = $cart['id'];
 } else {
     // Create a new cart if one does not exist
-    $query = "INSERT INTO cart (user_id) VALUES (?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $cart_id = $stmt->insert_id;
+    $query = "INSERT INTO cart (user_id) VALUES ($user_id)";
+    $conn->query($query);
+    $cart_id = $conn->insert_id;
 }
 
 // Check if the item is already in the cart
-$query = "SELECT id FROM cart_items WHERE cart_id = ? AND product_id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("ii", $cart_id, $product_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$query = "SELECT id FROM cart_items WHERE cart_id = $cart_id AND product_id = $product_id";
+$result = $conn->query($query);
 $item = $result->fetch_assoc();
 
 if ($item) {
     // Update quantity if item already exists in cart
-    $query = "UPDATE cart_items SET quantity = quantity + ? WHERE cart_id = ? AND product_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("iii", $quantity, $cart_id, $product_id);
-    $stmt->execute();
+    $query = "UPDATE cart_items SET quantity = quantity + $quantity WHERE cart_id = $cart_id AND product_id = $product_id";
+    $conn->query($query);
 } else {
-    
-    $query = "INSERT INTO cart_items (cart_id, product_id,  quantity) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("idi", $cart_id, $product_id,  $quantity); //removed $price from top and here
-    $stmt->execute();
+    // Insert new item into cart
+    $query = "INSERT INTO cart_items (cart_id, product_id, quantity) VALUES ($cart_id, $product_id, $quantity)";
+    $conn->query($query);
 }
 
 header("Location: cart.php"); // Redirect to cart page
