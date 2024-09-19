@@ -1,0 +1,111 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #e9f5ff; /* Softer light blue */
+  margin: 0;
+  padding: 0;
+}
+
+
+.prof {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px auto;
+  background-color: #ffffff; /* White background */
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 600px; /* Increased max width */
+  border: 1px solid #ddd; /* Subtle border */
+}
+
+.prof h1 {
+  color: #003366; /* Dark blue */
+  margin-bottom: 20px;
+  font-size: 24px; /* Larger font size for the title */
+  text-align: center; /* Center align the title */
+}
+
+.profile-details {
+  width: 100%; /* Full width for details */
+}
+
+.profile-details p {
+  font-size: 18px; /* Slightly larger text */
+  color: #555; /* Dark gray */
+  margin: 10px 0; /* Add spacing between lines */
+}
+
+.profile-details p strong {
+  color: #003366; /* Dark blue for labels */
+}
+
+
+
+.prof, .orders {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Correcting 'left' to 'flex-start' */
+  margin: 20px auto;
+  background-color: #ffffff; /* White background */
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 600px; /* Increased max width */
+}
+
+.prof h1, .orders h2 {
+  color: #003366; /* Dark blue */
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.prof p {
+  font-size: 16px;
+  color: #444; /* Dark gray for better readability */
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.orders table th, .orders table td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increased padding */
+  text-align: left;
+  font-size: 15px;
+}
+
+.orders table th {
+  background-color: #f0f8ff; /* Lighter blue for header */
+  color: #003366; /* Dark blue for header text */
+}
+
+.orders table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray */
+}
+
+.orders table tr:hover {
+  background-color: #e0f0ff; /* Light hover effect */
+}
+
+
+
+.button {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #218838;
+}
