@@ -1,0 +1,111 @@
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+/* Product Table */
+.product-table {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+td a {
+    color: #FF6F61;
+    text-decoration: none;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.btn-add {
+    background-color:#e18e12;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #FFCC00;
+    color: black;
+}
+
+.btn-delete {
+    background-color: #FF6F61;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-add-new {
+    display: block;
+    margin: 20px 0;
+    text-align: right;
+}
+
+.header {
+    background-color: #232f3e; 
+    color: white; 
+    padding: 15px 20px;
+    text-align: center; 
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5em; 
+    font-weight: bold; 
+}
+
+.header nav {
+    margin-top: 10px;
+}
+
+.header nav a {
+    color: white; 
+    text-decoration: none; /* Remove underline from links */
+    margin: 0 15px; /* Space between the links */
+    font-size: 1.0em; 
+}
+
+.header nav a:hover {
+    text-decoration: underline; /* Underline the link on hover */
+    color: #ff9900; 
+}
+
+footer {
+    background-color: #232f3e;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 250px;
+}
