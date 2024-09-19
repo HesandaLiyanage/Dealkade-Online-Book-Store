@@ -18,19 +18,11 @@ if (!isset($_SESSION['user_id'])) {
         <link rel="stylesheet" href="../css/indexstyle.css">
     </head>
     <body>
-
-<header>
     
-    <div class="header">
-        <h1>BookShop</h1>
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="cart.php">Cart</a>
-            <a href="../login/index.php">Login</a>
-        </nav>
+<div >
+        <?php include "header.html"; ?>
     </div>
 
-</header>  
                 <div class="card">
                     <h2 class ="main-text">Dashboard</h2>
                     <h3 class ="sub-text">Control panel</h3>

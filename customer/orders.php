@@ -27,14 +27,9 @@ include "../db_connect.php";
     </head>
     <body>
         <header>
-            <div class="header">
-                <h1>BookShop</h1>
-                <nav>
-                    <a href="index.php">Home</a>
-                    <a href="cart.php">Cart</a>
-                    <a href="login.php">Login</a>
-                </nav>
-            </div>
+        <div id="header-container">
+        <?php include "header.html"; ?>
+    </div>
         </header>
         <div class="slidebar">
             <h2>My profile</h2>
