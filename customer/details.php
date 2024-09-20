@@ -78,7 +78,7 @@ $user_id = $_SESSION['user_id'];
                 
                 <div class="slidebar">
                     <h2>My profile</h2>
-                    <button onclick="window.location.href = '../dealkade/index.php'">
+                    <button onclick="window.location.href = 'dashboard.php'">
                         Dashboard
                     </button>
                     <button style="background-color:white; color:black; "onclick="window.location.href = '#'">

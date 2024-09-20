@@ -56,6 +56,17 @@ $conn->close();
 </head>
 <link rel="stylesheet" href="../css/edit_product.css">
 <body>
+<header>
+    
+    <div class="header">
+        <h1>BookShop</h1>
+        <nav>
+            <a href="dashboard.php">Main Menu</a>
+            <a href="../index.php">Login</a>
+        </nav>
+    </div>
+
+</header>
     <h1>Edit Product</h1>
     <?php if ($product): ?>
         <form method="POST" action="">

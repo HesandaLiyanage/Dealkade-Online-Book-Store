@@ -1,105 +1,145 @@
 
 /* Resetting margin and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* General styles */
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 20px;
-  }
-  
-  /* Admin dashboard styles */
-  .admin-dashboard {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-dashboard h1 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .admin-dashboard table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .admin-dashboard table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  .admin-dashboard th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .admin-dashboard th {
-    background-color: #f2f2f2;
-  }
-  
-  .admin-dashboard tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .admin-dashboard a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .admin-dashboard a:hover {
-    text-decoration: underline;
-  }
-  
-  /* User details styles */
-  .user-details {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-details h1, .user-details h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .user-details table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .user-details table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  .user-details th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .user-details th {
-    background-color: #f2f2f2;
-  }
-  
-  .user-details tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  
-.button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 20px;
+}
+
+/* Admin dashboard styles */
+.admin-dashboard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-dashboard table, th, td {
+  border: 1px solid #ddd;
+}
+
+.admin-dashboard th, td {
   padding: 10px;
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  text-align: left;
+}
+
+.admin-dashboard th {
+  background-color: #f2f2f2;
+}
+
+.admin-dashboard tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.admin-dashboard a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.admin-dashboard a:hover {
+  text-decoration: underline;
+}
+
+/* User details styles */
+.user-details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-details h1, .user-details h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.user-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-details table, th, td {
+  border: 1px solid #ddd;
+}
+
+.user-details th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.user-details th {
+  background-color: #f2f2f2;
+}
+
+.user-details tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.button {
+padding: 10px;
+background-color: #28a745;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s ease;
+}
+
+.header {
+  background-color: #232f3e; 
+  color: white; 
+  padding: 15px 20px;
+  text-align: center; 
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5em; 
+  font-weight: bold; 
+}
+
+.header nav {
+  margin-top: 10px;
+}
+
+.header nav a {
+  color: white; 
+  text-decoration: none; /* Remove underline from links */
+  margin: 0 15px; /* Space between the links */
+  font-size: 1.0em; 
+}
+
+.header nav a:hover {
+  text-decoration: underline; /* Underline the link on hover */
+  color: #ff9900; 
+}
+
+.footer {
+  background-color: #232f3e;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width:100%;
+  bottom:0;
+  left:0;
+  position: fixed;
 }

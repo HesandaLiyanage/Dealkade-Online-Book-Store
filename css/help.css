@@ -1,0 +1,81 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #444;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}
+
+nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.faq, .contact-form {
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #444;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

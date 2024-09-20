@@ -2,10 +2,8 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['role']) === 'admin') {
-    // header("Location: ../Login/index.php"); // Redirect to login if not logged in
-    echo "You aren't an admin!!!";
-    // header("Location: ../Login/index.php");
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
     exit();
 }
 ?>
@@ -41,16 +39,15 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Products</title>
-    <link rel="stylesheet" href="../css/ordermgt.css">k
+    <link rel="stylesheet" href="../css/ordermgt.css">
 </head>
 <body>
     <header>
         <div class="header">
             <h1>BookShop</h1>
             <nav>
-                <a href="dashboard.php">Home</a>
-                <a href="cart.php">Cart</a>
-                <a href="login.php">Login</a>
+                <a href="dashboard.php">Main Menu</a>
+                <a href="../index.php">Login</a>
             </nav>
         </div>
     </header>

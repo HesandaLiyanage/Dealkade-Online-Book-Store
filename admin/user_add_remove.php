@@ -24,11 +24,17 @@ $result_users = $conn->query($sql_users);
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 <body>
-<div id="header-container">
-        <?php
-            include "header.html"
-            ?>
-        </div>
+<header>
+    
+    <div class="header">
+        <h1>BookShop</h1>
+        <nav>
+            <a href="dashboard.php">Main Menu</a>
+            <a href="../index.php">Login</a>
+        </nav>
+    </div>
+
+</header>
     <div class="admin-dashboard">
         <h1>Admin Dashboard</h1>
         <table>

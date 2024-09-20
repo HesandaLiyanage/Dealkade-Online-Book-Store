@@ -3,7 +3,7 @@ session_start();
 require '../db_connect.php'; // Include your DB connection
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/index.php"); // Redirect to login if not logged in
+    header("Location: ../index.php"); // Redirect to login if not logged in
     exit();
 }
 

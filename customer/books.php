@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/index.php"); // Redirect to login if not logged in
+    header("Location: ../index.php"); // Redirect to login if not logged in
     exit();
 }
 
@@ -77,20 +77,22 @@ $conn->close();
 
         <!-- Product List Section -->
         <div class="products-container">
-            <?php foreach ($products as $product): ?>
-            <div class="product">
-                <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
-                <h3><?php echo $product['name']; ?></h3>
-                <p class="price">$<?php echo number_format($product['price'], 2); ?></p>
-                <p class="rating">★★★★☆</p>
-                <form action="add_to_cart.php" method="post">
-                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
-                    <button type="submit" class="buy-button">Add to Cart</button>
-                </form>
-            </div>
-            <?php endforeach; ?>
-        </div>
+    <?php foreach ($products as $product): ?>
+    <div class="product">
+        <a href="book-details.php?id=<?php echo $product['id']; ?>" style="text-decoration: none; color: inherit;">
+            <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
+            <h3><?php echo $product['name']; ?></h3>
+            <p class="price">$<?php echo number_format($product['price'], 2); ?></p>
+            <p class="rating">★★★★☆</p>
+        </a>
+        <form action="add_to_cart.php" method="post">
+            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+            <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+            <button type="submit" class="buy-button">Add to Cart</button>
+        </form>
+    </div>
+    <?php endforeach; ?>
+</div>
     </div>
 
     <footer>

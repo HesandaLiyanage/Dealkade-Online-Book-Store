@@ -1,27 +1,28 @@
 body {
-    background-color: black;
-    color: yellow;
+    background-color: white;
+    color: black;
     font-family: Arial, sans-serif;
     margin: 20px;
 }
 
 h1 {
-    color: green;
+    color: #333;
 }
 
 form {
-    background-color: yellow;
+    background-color: #f7f7f7;
     padding: 20px;
     border-radius: 10px;
     max-width: 400px;
     margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
     display: block;
     margin-bottom: 10px;
-    color: black;
     font-weight: bold;
+    color: #333;
 }
 
 input[type="text"],
@@ -29,24 +30,23 @@ input[type="number"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
-    border: 1px solid green;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 button {
-    background-color: green;
-    color: yellow;
+    background-color: #333;
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    width: 100%;
 }
 
 button:hover {
-    background-color: yellow;
-    color: black;
-    border: 1px solid green;
+    background-color: #555;
 }
 
 p {

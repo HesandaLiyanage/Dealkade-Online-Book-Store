@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/index.php"); // Redirect to login if not logged in
+    header("Location: ../index.php"); // Redirect to login if not logged in
     exit();
 }
 
@@ -92,7 +92,6 @@ $conn->close();
                     <form action="buy.php" method="POST">
                         <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn buy-now">Buy Now</button>
                     </form>
                 </div>
             </div>

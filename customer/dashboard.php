@@ -33,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>   
             
             <footer>
-                <p>&copy; 2024 Book Shop. Powered by Hesanda.</p>
+                <p>&copy; 2024 Deal kade Book Shop</p>
             </footer>
                              
     </body>

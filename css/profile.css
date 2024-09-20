@@ -110,6 +110,10 @@ body {
   background-color: #218838;
 }
 
-footer {
+.footer {
   bottom: 0;
+  width :100%;
+  position: fixed;
+  left:0;
+
 }

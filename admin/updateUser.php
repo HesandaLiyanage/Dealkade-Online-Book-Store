@@ -1,7 +1,13 @@
 <?php
 include "../db_connect.php";
 
+
 $user_id = $_GET['id'];
+
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
+    exit();
+}
 
 // Fetch user details for pre-filling the form
 $sql_user = "SELECT id, username_or_email, name, address, phone_number FROM users WHERE id = '$user_id' ";
