@@ -57,9 +57,11 @@ $conn->close();
                     <label for="category">Category:</label>
                     <select id="category" name='category'>
                         <option value="all">All</option>
-                        <option value="novels">Novels</option>
-                        <option value="scifi">Sci-Fi</option>
-                        <option value="fiction">Fiction</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Children\'s Books">Children's Books</option>
+                        <option value="Science">Science</option>
+                        <option value="Self-Help">Self-Help</option>
                     </select>
 
                     <label for="price-range">Price Range:</label>
