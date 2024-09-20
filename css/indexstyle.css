@@ -85,9 +85,13 @@ color: #999;
     color: #ff9900; 
 }
 
-footer {
+.footer {
     background-color: #232f3e;
     color: white;
     padding: 10px;
     text-align: center;
+    width:100%;
+    bottom:0;
+    left:0;
+    position: fixed;
 }

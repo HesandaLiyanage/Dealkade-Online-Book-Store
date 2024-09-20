@@ -103,3 +103,43 @@ cursor: pointer;
 font-size: 16px;
 transition: background-color 0.3s ease;
 }
+
+.header {
+  background-color: #232f3e; 
+  color: white; 
+  padding: 15px 20px;
+  text-align: center; 
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5em; 
+  font-weight: bold; 
+}
+
+.header nav {
+  margin-top: 10px;
+}
+
+.header nav a {
+  color: white; 
+  text-decoration: none; /* Remove underline from links */
+  margin: 0 15px; /* Space between the links */
+  font-size: 1.0em; 
+}
+
+.header nav a:hover {
+  text-decoration: underline; /* Underline the link on hover */
+  color: #ff9900; 
+}
+
+.footer {
+  background-color: #232f3e;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width:100%;
+  bottom:0;
+  left:0;
+  position: fixed;
+}

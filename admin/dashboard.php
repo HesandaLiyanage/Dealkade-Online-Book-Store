@@ -2,10 +2,8 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['role']) === 'admin') {
-    // header("Location: ../Login/index.php"); // Redirect to login if not logged in
-    echo "You aren't an admin";
-    header("Location: ../index.php");
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
     exit();
 }
 ?>
@@ -24,8 +22,7 @@ if (!isset($_SESSION['role']) === 'admin') {
     <div class="header">
         <h1>BookShop</h1>
         <nav>
-            <a href="index.php">Home</a>
-            <a href="cart.php">Cart</a>
+            <a href="dashboard.php">Main Menu</a>
             <a href="../index.php">Login</a>
         </nav>
     </div>
@@ -42,9 +39,9 @@ if (!isset($_SESSION['role']) === 'admin') {
 					   </div>
                 </div>   
             
-            <footer>
-                <p>&copy; 2024 Book Shop. Powered by Hesanda.</p>
-            </footer>
+            <!-- <footer class="footer">
+                 2024 Book Shop. Powered by Hesanda
+            </footer> -->
                              
     </body>
 </html>

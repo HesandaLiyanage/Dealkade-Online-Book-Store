@@ -3,7 +3,11 @@ include "../db_connect.php";
 
 $user_id = $_GET['id'];
 
-// Delete user from the database
+// Delete user from the 
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
+    exit();
+}
 
 if ($user_id) {
     // Start a transaction to ensure all queries execute successfully

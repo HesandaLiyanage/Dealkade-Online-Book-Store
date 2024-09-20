@@ -2,8 +2,8 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION['role']) === 'admin') {
-    echo "You aren't an admin!!!";
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
     exit();
 }
 
@@ -50,11 +50,6 @@ $conn->close();
     <link rel="stylesheet" href="../css/products.css">
 </head>
 <body>
-<div id="header-container">
-        <?php
-            include "header.html"
-            ?>
-        </div>
     <header>
         <h3>Admin Dashboard - Manage Products</h3>
     </header>
@@ -62,7 +57,6 @@ $conn->close();
     <!-- Product List -->
     <div class="product-table">
         <div class="btn-add-new">
-            <a href="add_product.php" class="btn btn-add">Add New Product</a>
         </div>
         <table>
             <thead>

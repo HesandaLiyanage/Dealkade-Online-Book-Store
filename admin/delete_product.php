@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    echo "You aren't an admin!!!";
+if ($_SESSION['role'] !== 'admin') {
+    echo "<p>Access denied.</p>";
     exit();
 }
 
