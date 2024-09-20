@@ -2,12 +2,13 @@
 session_start();
 include "../db_connect.php";
 
-$user_id = $_GET['id'];
+
 
 if ($_SESSION['role'] !== 'admin') {
     echo "<p>Access denied.</p>";
     exit();
 }
+$user_id = $_GET['id'];
 
 // Fetch user details
 $sql_user = "SELECT id, username_or_email, name, address, phone_number FROM users WHERE id = $user_id";
@@ -42,7 +43,7 @@ echo "
         <p><h4>Address </h4>" . $user['address']. "</p>
         <p><h4>Phone Number </h4>" . $user['phone_number'] . "</p>
         
-<a class = 'button' href='deleteUser.php?id=" . $user['id'] ."'>Delete User</a>
+<a class = 'button' href='deleteUser.php?id=" . $user['id'] ." '>Delete User</a>
     </div>
 </div>
     <br><br>
