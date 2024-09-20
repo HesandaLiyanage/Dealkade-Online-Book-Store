@@ -75,9 +75,9 @@ include "../db_connect.php";
             
         </div>
         
-    <footer>
-        <p>&copy; 2024 Book Shop. Powered by Hesanda.</p>
-    </footer>
+    <!-- <footer class='footer'>
+        2024 Deal Kade Book Shop
+    </footer> -->
                    
     </body>
 </html>
