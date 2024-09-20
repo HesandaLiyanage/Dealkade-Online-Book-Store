@@ -92,7 +92,6 @@ $conn->close();
                     <form action="buy.php" method="POST">
                         <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn buy-now">Buy Now</button>
                     </form>
                 </div>
             </div>

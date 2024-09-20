@@ -1,6 +1,6 @@
 <?php
 // Assuming you have a database connection (adjust with your DB credentials)
-include "../db_connect.php"
+include "../db_connect.php";
 
 // Get search query, category, and price range from the form
 $search = isset($_GET['query']) ? trim($_GET['query']) : '';
@@ -17,14 +17,12 @@ $params = [];
 
 // Add search query filter
 if (!empty($search)) {
-    $sql .= " AND p.name LIKE :search";
-    $params[':search'] = '%' . $search . '%';
+    $sql .= " AND p.name LIKE '%" . $search . "%'";
 }
 
 // Add category filter if not "all"
 if ($category !== 'all') {
-    $sql .= " AND c.name = :category";
-    $params[':category'] = $category;
+    $sql .= " AND c.name = '" . $category . "'";
 }
 
 // Add price range filter if not "all"
@@ -33,9 +31,7 @@ if ($priceRange !== 'all') {
     if (count($priceBounds) === 2) {
         $minPrice = (float)$priceBounds[0];
         $maxPrice = (float)$priceBounds[1];
-        $sql .= " AND p.price BETWEEN :minPrice AND :maxPrice";
-        $params[':minPrice'] = $minPrice;
-        $params[':maxPrice'] = $maxPrice;
+        $sql .= " AND p.price BETWEEN $minPrice AND $maxPrice";
     }
 }
 
