@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Products</title>
-    <link rel="stylesheet" href="../css/ordermgt.css">k
+    <link rel="stylesheet" href="../css/ordermgt.css">
 </head>
 <body>
     <header>
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
             <nav>
                 <a href="dashboard.php">Home</a>
                 <a href="cart.php">Cart</a>
-                <a href="login.php">Login</a>
+                <a href="../login.php">Login</a>
             </nav>
         </div>
     </header>

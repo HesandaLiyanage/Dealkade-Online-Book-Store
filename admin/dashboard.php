@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['role']) === 'admin') {
     // header("Location: ../Login/index.php"); // Redirect to login if not logged in
     echo "You aren't an admin";
-    header("Location: ../Login/index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
@@ -26,7 +26,7 @@ if (!isset($_SESSION['role']) === 'admin') {
         <nav>
             <a href="index.php">Home</a>
             <a href="cart.php">Cart</a>
-            <a href="../login/index.php">Login</a>
+            <a href="../index.php">Login</a>
         </nav>
     </div>
 
